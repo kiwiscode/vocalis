@@ -1,9 +1,16 @@
+import os  # This refers to the operating system module
 from flask import Flask, request
 from flask_cors import CORS
 
+from dotenv import load_dotenv
+from db import connect_db
+
+load_dotenv()
+connect_db(os.getenv)
+
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=[os.getenv("FRONTEND_URL")])
 
 
 @app.route("/healthy", methods=["GET", "POST"])
