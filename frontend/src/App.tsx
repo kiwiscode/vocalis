@@ -1,20 +1,18 @@
-import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+
+import Main from "./pages/Main";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
-  console.log(import.meta.env.VITE_API_URL);
-  const getResponse = async () => {
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/healthy`);
-
-      console.log("res:", res);
-    } catch (error) {}
-  };
   return (
-    <>
-      <button onClick={getResponse}>
-        Receive response from python+flask backend
-      </button>
-    </>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </div>
   );
 }
 
